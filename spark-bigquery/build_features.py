@@ -44,7 +44,7 @@ features = ['$^RBC(?! waste)', '$.*wbc(?!.*apache)', '$^platelet(?!.*intake)',
             'CV - past']
 
 patterns = []
-for feature in self.features:
+for feature in features:
     if '$' not in feature:
         patterns.append('.*{0}.*'.format(feature))
     elif '$' in feature:
@@ -117,7 +117,7 @@ script_features = ['epoetin', 'warfarin', 'heparin', 'enoxaparin', 'fondaparinux
                    'ampicillin-sulbactam', 'nafcillin', 'oxacillin', 'amoxicillin',
                    'penicillin(?!.*Desen)', 'sulfamethoxazole']
 
-self.script_patterns = ['.*' + feature + '.*' for feature in self.script_features]
+script_patterns = ['.*' + feature + '.*' for feature in script_features]
 
 # Create an empty DataFrame. We will continuously union our output with this
 feature_counts = spark.createDataFrame([], schema)
