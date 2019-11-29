@@ -122,11 +122,8 @@ feature_counts = spark.createDataFrame([], schema)
 
 table = "physionet-data.mimiciii_clinical.d_items"
 
-try:
-    table_df = spark.read.format('bigquery').option('table', table).load()
-    tables_read.append(table)
-except Py4JJavaError:
-    pass
+table_df = spark.read.format('bigquery').option('table', table).load()
+tables_read.append(table)
 
 # We perform a group-by on subreddit, aggregating by the count and then
 # unioning the output to our base dataframe
