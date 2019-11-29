@@ -1,4 +1,5 @@
 # This will help catch some PySpark errors
+
 from py4j.protocol import Py4JJavaError
 # A Spark Session is how we interact with Spark SQL to create Dataframes
 from pyspark.sql import SparkSession
@@ -49,9 +50,6 @@ for feature in features:
         patterns.append('.*{0}.*'.format(feature))
     elif '$' in feature:
         patterns.append(feature[1::])
-
-d_items = pd.read_csv(ROOT + 'D_ITEMS.csv', usecols=['ITEMID', 'LABEL'])
-d_items.dropna(how='any', axis=0, inplace=True)
 
 script_features_names = ['epoetin', 'warfarin', 'heparin', 'enoxaparin', 'fondaparinux',
                          'asprin', 'ketorolac', 'acetominophen',
